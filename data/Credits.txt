@@ -1,0 +1,46 @@
+Text that appears outside of the block tags
+will not display in the credits scene
+
+<block:-1,-1,10,10,offbot,center,blank>
+CREDITS
+
+\c[2]A game by
+TKLNinja
+
+\c[2]Main Artwork by
+TKLNinja
+
+\c[2]Engine
+RPG Maker MV
+
+\c[2]Game testers
+LethalTK
+Caroos-Dungeon
+
+\c[2]Music
+Country Boy - Royalty Free Music from Bensound
+
+"Mischief Maker" - Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/
+
+Lively shopping street - https://wingless-seraph.net/
+
+\c[2]Other resources
+Ponyville Assets by Gameloft
+
+Apple Family Barn Interior (Full Version) by BobtheLurker
+
+\c[2]All Characters belong to Hasbro
+
+\c[2]Visit me
+For updates visit my Deviantart site https://www.deviantart.com/tklninja
+or my Furaffinity account https://www.furaffinity.net/user/tklninja/
+
+Stay tuned for more.
+
+\c[2]Thanks for playing
+
+\c[2]THE END
+</block>
+
