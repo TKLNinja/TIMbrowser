@@ -1,6 +1,6 @@
 [
 null,
-{"id":1,"expanded":false,"name":"Spawner Map","order":1,"parentId":0,"scrollX":929.3333333333334,"scrollY":595.3333333333334},
-{"id":2,"expanded":true,"name":"Ponyville","order":3,"parentId":0,"scrollX":921.3333333333334,"scrollY":3255.3333333333335},
-{"id":3,"expanded":true,"name":"Tickle Event","order":2,"parentId":0,"scrollX":932,"scrollY":595.3333333333334}
+{"id":1,"expanded":false,"name":"Spawner","order":1,"parentId":0,"scrollX":932,"scrollY":595.3333333333334},
+{"id":2,"expanded":true,"name":"Ponyville","order":3,"parentId":0,"scrollX":921.3333333333334,"scrollY":2855.3333333333335},
+{"id":3,"expanded":true,"name":"EventTriggers","order":2,"parentId":0,"scrollX":932,"scrollY":595.3333333333334}
 ]
