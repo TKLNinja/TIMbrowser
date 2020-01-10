@@ -1,5 +1,5 @@
 //=============================================================================
-// rpg_objects.js v1.5.0
+// rpg_objects.js v1.3.4
 //=============================================================================
 
 //-----------------------------------------------------------------------------
@@ -271,10 +271,6 @@ Game_System.prototype.replayWalkingBgm = function() {
     }
 };
 
-Game_System.prototype.saveWalkingBgm2 = function() {
-	this._walkingBgm = $dataMap.bgm;
-};
-
 //-----------------------------------------------------------------------------
 // Game_Timer
 //
@@ -504,7 +500,9 @@ Game_Message.prototype.newPage = function() {
 };
 
 Game_Message.prototype.allText = function() {
-    return this._texts.join('\n');
+    return this._texts.reduce(function(previousValue, currentValue) {
+        return previousValue + '\n' + currentValue;
+    });
 };
 
 //-----------------------------------------------------------------------------
@@ -563,7 +561,8 @@ Game_Variables.prototype.value = function(variableId) {
 Game_Variables.prototype.setValue = function(variableId, value) {
     if (variableId > 0 && variableId < $dataSystem.variables.length) {
         if (typeof value === 'number') {
-            value = Math.floor(value);
+            //value = Math.floor(value);
+            value = Math.round(value);
         }
         this._data[variableId] = value;
         this.onChange();
@@ -4270,10 +4269,10 @@ Game_Actor.prototype.testEscape = function(item) {
 };
 
 Game_Actor.prototype.meetsUsableItemConditions = function(item) {
-    if ($gameParty.inBattle() && !BattleManager.canEscape() && this.testEscape(item)) {
+    if($gameParty.inBattle() && !BattleManager.canEscape() && this.testEscape(item)){
         return false;
     }
-    return Game_BattlerBase.prototype.meetsUsableItemConditions.call(this, item);
+    return this.canMove() && this.isOccasionOk(item);
 };
 
 //-----------------------------------------------------------------------------
@@ -5787,11 +5786,7 @@ Game_Map.prototype.canvasToMapY = function(y) {
 
 Game_Map.prototype.autoplay = function() {
     if ($dataMap.autoplayBgm) {
-        if ($gamePlayer.isInVehicle()) {
-            $gameSystem.saveWalkingBgm2();
-        } else {
-            AudioManager.playBgm($dataMap.bgm);
-        }
+        AudioManager.playBgm($dataMap.bgm);
     }
     if ($dataMap.autoplayBgs) {
         AudioManager.playBgs($dataMap.bgs);
@@ -7308,6 +7303,7 @@ Game_Character.prototype.findDirectionTo = function(goalX, goalY) {
 
         if (current.x === goalX && current.y === goalY) {
             best = current;
+            goaled = true;
             break;
         }
 
@@ -8800,7 +8796,6 @@ Game_Interpreter.prototype.setup = function(list, eventId) {
     this._mapId = $gameMap.mapId();
     this._eventId = eventId || 0;
     this._list = list;
-    Game_Interpreter.requestImages(list);
 };
 
 Game_Interpreter.prototype.eventId = function() {
@@ -9374,18 +9369,52 @@ Game_Interpreter.prototype.command118 = function() {
     return true;
 };
 
-// Jump to Label
+// // Name Label
+// Game_Interpreter.prototype.name_label = function(someName) {
+//     return this._params[0] = someName;
+// };
+
+//Jump to Label -- original
 Game_Interpreter.prototype.command119 = function() {
     var labelName = this._params[0];
     for (var i = 0; i < this._list.length; i++) {
         var command = this._list[i];
         if (command.code === 118 && command.parameters[0] === labelName) {
             this.jumpTo(i);
+            console.log(labelName);
             return;
         }
     }
     return true;
 };
+
+// // Change Label: Jump to Label (Input parameter)
+// Game_Interpreter.prototype.jump_to_label = function(label) {
+//     //var label = "";
+//     //var labelName = this._params[0];
+//     for (var i = 0; i < this._list.length; i++) {
+//         var command = this._list[i];
+//         if (command.code === 118 && command.parameters[0] === label) {
+//             this.jumpTo(i);
+//             return;
+//         }
+//     }
+//     return true;
+// };
+
+// Change Label: (get Input from params)
+// Game_Interpreter.prototype.jump_to_label_params = function() {
+//     var labelName = this._params[0];
+//     for (var i = 0; i < this._list.length; i++) {
+//         var command = this._list[i];
+//         if (command.code === 118 && command.parameters[0] === labelName) {
+//             this.jumpTo(i);
+//             return;
+//         }
+//     }
+//     return true;
+// };
+
 
 Game_Interpreter.prototype.jumpTo = function(index) {
     var lastIndex = this._index;
@@ -10049,19 +10078,11 @@ Game_Interpreter.prototype.command281 = function() {
 // Change Tileset
 Game_Interpreter.prototype.command282 = function() {
     var tileset = $dataTilesets[this._params[0]];
-    if(!this._imageReservationId){
-        this._imageReservationId = Utils.generateRuntimeId();
+    for (var i = 0; i < tileset.tilesetNames.length; i++) {
+        ImageManager.loadTileset(tileset.tilesetNames[i]);
     }
-
-    var allReady = tileset.tilesetNames.map(function(tilesetName) {
-        return ImageManager.reserveTileset(tilesetName, 0, this._imageReservationId);
-    }, this).every(function(bitmap) {return bitmap.isReady();});
-
-    if (allReady) {
+    if (ImageManager.isReady()) {
         $gameMap.changeTileset(this._params[0]);
-        ImageManager.releaseReservation(this._imageReservationId);
-        this._imageReservationId = null;
-
         return true;
     } else {
         return false;
@@ -10497,131 +10518,4 @@ Game_Interpreter.prototype.command356 = function() {
 
 Game_Interpreter.prototype.pluginCommand = function(command, args) {
     // to be overridden by plugins
-};
-
-Game_Interpreter.requestImages = function(list, commonList){
-    if(!list) return;
-
-    list.forEach(function(command){
-        var params = command.parameters;
-        switch(command.code){
-            // Show Text
-            case 101:
-                ImageManager.requestFace(params[0]);
-                break;
-
-            // Common Event
-            case 117:
-                var commonEvent = $dataCommonEvents[params[0]];
-                if (commonEvent) {
-                    if (!commonList) {
-                        commonList = [];
-                    }
-                    if (!commonList.contains(params[0])) {
-                        commonList.push(params[0]);
-                        Game_Interpreter.requestImages(commonEvent.list, commonList);
-                    }
-                }
-                break;
-
-            // Change Party Member
-            case 129:
-                var actor = $gameActors.actor(params[0]);
-                if (actor && params[1] === 0) {
-                    var name = actor.characterName();
-                    ImageManager.requestCharacter(name);
-                }
-                break;
-
-            // Set Movement Route
-            case 205:
-                if(params[1]){
-                    params[1].list.forEach(function(command){
-                        var params = command.parameters;
-                        if(command.code === Game_Character.ROUTE_CHANGE_IMAGE){
-                            ImageManager.requestCharacter(params[0]);
-                        }
-                    });
-                }
-                break;
-
-            // Show Animation, Show Battle Animation
-            case 212: case 337:
-                if(params[1]) {
-                    var animation = $dataAnimations[params[1]];
-                    var name1 = animation.animation1Name;
-                    var name2 = animation.animation2Name;
-                    var hue1 = animation.animation1Hue;
-                    var hue2 = animation.animation2Hue;
-                    ImageManager.requestAnimation(name1, hue1);
-                    ImageManager.requestAnimation(name2, hue2);
-                }
-                break;
-
-            // Change Player Followers
-            case 216:
-                if (params[0] === 0) {
-                    $gamePlayer.followers().forEach(function(follower) {
-                        var name = follower.characterName();
-                        ImageManager.requestCharacter(name);
-                    });
-                }
-                break;
-
-            // Show Picture
-            case 231:
-                ImageManager.requestPicture(params[1]);
-                break;
-
-            // Change Tileset
-            case 282:
-                var tileset = $dataTilesets[params[0]];
-                tileset.tilesetNames.forEach(function(tilesetName){
-                    ImageManager.requestTileset(tilesetName);
-                });
-                break;
-
-            // Change Battle Back
-            case 283:
-                if ($gameParty.inBattle()) {
-                    ImageManager.requestBattleback1(params[0]);
-                    ImageManager.requestBattleback2(params[1]);
-                }
-                break;
-
-            // Change Parallax
-            case 284:
-                if (!$gameParty.inBattle()) {
-                    ImageManager.requestParallax(params[0]);
-                }
-                break;
-
-            // Change Actor Images
-            case 322:
-                ImageManager.requestCharacter(params[1]);
-                ImageManager.requestFace(params[3]);
-                ImageManager.requestSvActor(params[5]);
-                break;
-
-            // Change Vehicle Image
-            case 323:
-                var vehicle = $gameMap.vehicle(params[0]);
-                if(vehicle){
-                    ImageManager.requestCharacter(params[1]);
-                }
-                break;
-
-            // Enemy Transform
-            case 336:
-                var enemy = $dataEnemies[params[1]];
-                var name = enemy.battlerName;
-                var hue = enemy.battlerHue;
-                if ($gameSystem.isSideView()) {
-                    ImageManager.requestSvEnemy(name, hue);
-                } else {
-                    ImageManager.requestEnemy(name, hue);
-                }
-                break;
-        }
-    });
 };
