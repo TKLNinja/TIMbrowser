@@ -1,0 +1,312 @@
+{
+	"aj": {
+		"l": {
+			"p1": {
+				"finger": {
+					"heel": {
+						"x": [494,484,477,467,454,446,434,422,415],
+						"y": [440,442,444,446,448,454,458,466,477],
+						"xlength": [40,60,72,90,115,130,152,176,193],
+						"ylength": [2,2,2,2,6,4,8,11,11]
+					},
+					"side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"lower arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"upper arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toe 0": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toe 1": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toe 2": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toe 3": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toe 4": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toebetween": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					}
+				},
+				"hand": {
+					"heel": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toes": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"grab": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					}
+				},
+				"special": {
+					"heel": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toes": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"sole": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					}
+				}
+			},
+			"p2": {
+				"finger": {
+					"heel": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"lower arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"center arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"upper arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball center": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toe 4": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toebetween": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					}
+				},
+				"hand": {
+					"heel": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"side": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toes": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"grab": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					}
+				},
+				"special": {
+					"heel": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"lower arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"upper arch": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"ball": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"toes": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					},
+					"sole": {
+						"x": [],
+						"y": [],
+						"xlength": [],
+						"ylength": []
+					}
+				},
+				"p3": {
+					"Finger": {
+						
+					},
+					"Hand": {
+						
+					},
+					"Special": {
+						
+					}
+				}
+			},
+			"r": {
+				
+			}
+		}
+	}
+}
