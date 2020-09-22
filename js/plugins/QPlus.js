@@ -653,9 +653,9 @@ function QPlus() {
 //-----------------------------------------------------------------------------
 // SimpleTilemap
 
-function SimpleTilemap() {
-  this.initialize.apply(this, arguments);
-}
+//function SimpleTilemap() {
+//  this.initialize.apply(this, arguments);
+//}
 
 //=============================================================================
 // QPlus edits to existing classes
@@ -981,9 +981,9 @@ function SimpleTilemap() {
     this.globalLock(charas, 0, 0);
   };
 
-  Game_Map.prototype.noTilemap = function() {
-    return !!$dataMap.meta.noTilemap;
-  };
+// Game_Map.prototype.noTilemap = function() {
+//    return !!$dataMap.meta.noTilemap;
+//  };
 
   //-----------------------------------------------------------------------------
   // Game_CharacterBase
@@ -1195,78 +1195,79 @@ function SimpleTilemap() {
   //-----------------------------------------------------------------------------
   // Sprite_Character
 
-  var Alias_Sprite_Character_updatePosition = Sprite_Character.prototype.updatePosition;
-  Sprite_Character.prototype.updatePosition = function() {
-    var prevY = this.y;
-    var prevZ = this.z;
-    Alias_Sprite_Character_updatePosition.call(this);
-    if (this.y !== prevY || this.z !== prevZ) {
-      if ($gameMap.noTilemap && this.parent && this.parent.requestSort) {
-        this.parent.requestSort();
-      }
-    }
-  };
+  //var Alias_Sprite_Character_updatePosition = Sprite_Character.prototype.updatePosition;
+  //Sprite_Character.prototype.updatePosition = function() {
+   // var prevY = this.y;
+   // var prevZ = this.z;
+   // Alias_Sprite_Character_updatePosition.call(this);
+   // if (this.y !== prevY || this.z !== prevZ) {
+	//	if (this.parent && this.parent.requestSort) {
+    //  if ($gameMap.noTilemap && this.parent && this.parent.requestSort) {
+    //    this.parent.requestSort();
+   //   }
+   // }
+ // };
 
   //-----------------------------------------------------------------------------
   // Spriteset_Map
 
-  var Alias_Spriteset_Map_createTilemap = Spriteset_Map.prototype.createTilemap;
-  Spriteset_Map.prototype.createTilemap = function() {
-    if ($gameMap.noTilemap()) {
-      this._tilemap = new SimpleTilemap();
-      this._baseSprite.addChild(this._tilemap);
-    } else {
-      Alias_Spriteset_Map_createTilemap.call(this);
-    }
-  };
+  //var Alias_Spriteset_Map_createTilemap = Spriteset_Map.prototype.createTilemap;
+  //Spriteset_Map.prototype.createTilemap = function() {
+   // if ($gameMap.noTilemap()) {
+  //    this._tilemap = new SimpleTilemap();
+  //    this._baseSprite.addChild(this._tilemap);
+  //  } else {
+  //    Alias_Spriteset_Map_createTilemap.call(this);
+  //  }
+ // };
 
-  var Alias_Spriteset_Map_loadTileset = Spriteset_Map.prototype.loadTileset;
-  Spriteset_Map.prototype.loadTileset = function() {
-    if (!$gameMap.noTilemap()) {
-      Alias_Spriteset_Map_loadTileset.call(this);
-    }
-  };
+ // var Alias_Spriteset_Map_loadTileset = Spriteset_Map.prototype.loadTileset;
+ // Spriteset_Map.prototype.loadTileset = function() {
+   // if (!$gameMap.noTilemap()) {
+  //    Alias_Spriteset_Map_loadTileset.call(this);
+ //   }
+ // };
 
-  var Alias_Spriteset_Map_updateTilemap = Spriteset_Map.prototype.updateTilemap;
-  Spriteset_Map.prototype.updateTilemap = function() {
-    if (!$gameMap.noTilemap()) {
-      Alias_Spriteset_Map_updateTilemap.call(this);
-    }
-  };
+ // var Alias_Spriteset_Map_updateTilemap = Spriteset_Map.prototype.updateTilemap;
+ // Spriteset_Map.prototype.updateTilemap = function() {
+  //  if (!$gameMap.noTilemap()) {
+ //     Alias_Spriteset_Map_updateTilemap.call(this);
+  //  }
+ // };
 
   //-----------------------------------------------------------------------------
   // SimpleTilemap
 
-  SimpleTilemap.prototype = Object.create(Sprite.prototype);
-  SimpleTilemap.prototype.constructor = SimpleTilemap;
+ // SimpleTilemap.prototype = Object.create(Sprite.prototype);
+ // SimpleTilemap.prototype.constructor = SimpleTilemap;
 
-  SimpleTilemap.prototype.initialize = function() {
-    Sprite.prototype.initialize.call(this);
-    this._requestSort = false;
-  };
+ // SimpleTilemap.prototype.initialize = function() {
+ //   Sprite.prototype.initialize.call(this);
+ //   this._requestSort = false;
+ // };
 
-  SimpleTilemap.prototype.requestSort = function() {
-    this._requestSort = true;
-  };
+ // SimpleTilemap.prototype.requestSort = function() {
+ //   this._requestSort = true;
+ // };
 
-  SimpleTilemap.prototype.update = function() {
-    Sprite.prototype.update.call(this);
-    if (this._requestSort) {
-      this._sortChildren();
-    }
-  };
+ // SimpleTilemap.prototype.update = function() {
+ //   Sprite.prototype.update.call(this);
+ //   if (this._requestSort) {
+ //     this._sortChildren();
+ //   }
+ // };
 
-  SimpleTilemap.prototype._sortChildren = function() {
-    this.children.sort(this._compareChildOrder.bind(this));
-  };
+ // SimpleTilemap.prototype._sortChildren = function() {
+ //   this.children.sort(this._compareChildOrder.bind(this));
+//  };
 
-  SimpleTilemap.prototype._compareChildOrder = function(a, b) {
-    if (a.z !== b.z) {
-      return a.z - b.z;
-    } else if (a.y !== b.y) {
-      return a.y - b.y;
-    } else {
-      return (a.spriteId - b.spriteId) || 0;
-    }
-  };
+ // SimpleTilemap.prototype._compareChildOrder = function(a, b) {
+ //   if (a.z !== b.z) {
+ //     return a.z - b.z;
+ //   } else if (a.y !== b.y) {
+ //     return a.y - b.y;
+//    } else {
+ //     return (a.spriteId - b.spriteId) || 0;
+ //   }
+ // };
 })()

@@ -13,9 +13,18 @@ TKLNinja
 \c[2]Engine
 RPG Maker MV
 
+\c[2]Art Support
+J
+
+\c[2]Additional Writers
+Crowns-and-Quills
+2ShyShy 
+
 \c[2]Game testers
-LethalTK
-Caroos-Dungeon
+Crowns-and-Quills
+J
+2ShyShy 
+
 
 \c[2]Music
 Country Boy - Royalty Free Music from Bensound
@@ -25,6 +34,8 @@ Licensed under Creative Commons: By Attribution 4.0 License
 http://creativecommons.org/licenses/by/4.0/
 
 Lively shopping street - https://wingless-seraph.net/
+
+158-A - White Elephants - Aaron Krogh - https://aaronkrogh.tumblr.com/
 
 \c[2]Other resources
 Ponyville Assets by Gameloft

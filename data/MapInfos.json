@@ -1,6 +1,7 @@
 [
 null,
-{"id":1,"expanded":false,"name":"Spawner","order":1,"parentId":0,"scrollX":932,"scrollY":595.3333333333334},
-{"id":2,"expanded":true,"name":"Ponyville","order":3,"parentId":0,"scrollX":921.3333333333334,"scrollY":2855.3333333333335},
-{"id":3,"expanded":true,"name":"EventTriggers","order":2,"parentId":0,"scrollX":932,"scrollY":595.3333333333334}
+{"id":1,"expanded":false,"name":"Spawner","order":1,"parentId":0,"scrollX":1092,"scrollY":614.6666666666666},
+{"id":2,"expanded":true,"name":"Ponyville","order":3,"parentId":0,"scrollX":1657.7142857142856,"scrollY":2137.714285714286},
+{"id":3,"expanded":true,"name":"EventTriggers","order":2,"parentId":0,"scrollX":982.8,"scrollY":553.1999999999999},
+{"id":4,"expanded":false,"name":"test","order":4,"parentId":0,"scrollX":982.8,"scrollY":553.1999999999999}
 ]
